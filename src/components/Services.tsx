@@ -1,38 +1,38 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle2, Calendar, MessageSquare, BarChart3, Globe, Shield } from "lucide-react";
+import { Clock, Brain, CalendarCheck, Send, Puzzle, Fingerprint } from "lucide-react";
 
 const services = [
     {
-        icon: MessageSquare,
-        title: "Intelligent Intake",
-        description: "Qualify leads with natural language conversations, not static forms.",
+        icon: Clock,
+        title: "Always-On Lead Capture",
+        description: "Stop losing revenue to after-hours inquiries. Your AI assistant operates 24/7, providing instant responses to website visitors and capturing valuable contact information while your competitors are asleep.",
     },
     {
-        icon: Calendar,
-        title: "Auto-Scheduling",
-        description: "Direct bi-directional sync with your calendar (Google, Outlook, Calendly).",
+        icon: Brain,
+        title: "Intelligent Lead Qualification",
+        description: "Ditch the low-converting static forms. Our AI engages prospects in natural conversations, asking targeted discovery questions to automatically qualify leads and filter out time-wasters before they ever reach your team.",
     },
     {
-        icon: BarChart3,
-        title: "Lead Generation",
-        description: "Capture contact info and push directly to your CRM.",
+        icon: CalendarCheck,
+        title: "Zero-Friction Scheduling",
+        description: "Eliminate the back-and-forth email tag. Qualified leads can book meetings directly on your calendar within the chat, ensuring you wake up to a packed schedule of high-value calls.",
     },
     {
-        icon: Globe,
-        title: "24/7 Availability",
-        description: "Never miss a lead, day or night, in any time zone.",
+        icon: Send,
+        title: "Proactive Outreach & Follow-ups",
+        description: "Go beyond just answering inbound questions. Your AI can proactively initiate conversations with new visitors, send text and email follow-ups to warm leads, and gently guide potential customers through your specific sales funnel.",
     },
     {
-        icon: Shield,
-        title: "Secure & Compliant",
-        description: "Enterprise-grade security for your data and your customers&apos;.",
+        icon: Puzzle,
+        title: "Seamless Tech Integration",
+        description: "Your new assistant plays perfectly with your existing workflow. From sending instant email notifications via Gmail to pushing qualified lead data directly into your favorite CRM, it completely eliminates manual data entry.",
     },
     {
-        icon: CheckCircle2,
-        title: "Custom Training",
-        description: "Trained on your specific knowledge base, FAQs, and brand voice.",
+        icon: Fingerprint,
+        title: "Tailored to Your Brand Voice",
+        description: "This is not a generic, robotic chatbot. We custom-train the AI exclusively on your business data, website, and FAQs. It perfectly mimics your brand's unique tone, ensuring every interaction feels personal, accurate, and highly professional.",
     },
 ];
 
@@ -47,10 +47,10 @@ export default function Services() {
                     className="text-center mb-16"
                 >
                     <h2 className="text-3xl md:text-5xl font-bold font-display mb-4">
-                        Everything You Need
+                        Turn Traffic Into Booked Meetings.
                     </h2>
                     <p className="text-muted-foreground max-w-2xl mx-auto">
-                        A complete suite of tools to automate your sales pipeline.
+                        An AI assistant that works 24/7, never takes a sick day, and instantly qualifies every lead that visits your site.
                     </p>
                 </motion.div>
 

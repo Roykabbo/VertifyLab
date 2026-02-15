@@ -7,8 +7,8 @@ export default function Footer() {
             <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row justify-between items-center gap-6">
                     <div className="flex flex-col items-center md:items-start gap-2">
-                        <Link href="/" className="text-2xl font-bold font-display">
-                            VertifyLab
+                        <Link href="/" className="flex items-center gap-2">
+                            <img src="/logo.png" alt="VertifyLab" className="h-10 w-auto object-contain" />
                         </Link>
                         <p className="text-sm text-muted-foreground">
                             © {new Date().getFullYear()} VertifyLab. All rights reserved.
