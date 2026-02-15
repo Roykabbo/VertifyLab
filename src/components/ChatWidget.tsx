@@ -15,7 +15,7 @@ const initialMessages: Message[] = [
     { role: "bot", content: "How can I help you automate your sales today?" },
 ];
 
-export default function ChatWidgetMockup() {
+export default function ChatWidget() {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<Message[]>(initialMessages);
     const [inputValue, setInputValue] = useState("");
@@ -35,7 +35,19 @@ export default function ChatWidgetMockup() {
         }
     }, [messages, isOpen, isTyping]);
 
-    const handleSend = (text: string = inputValue) => {
+    const [sessionId, setSessionId] = useState("");
+
+    useEffect(() => {
+        // Generate or retrieve session ID
+        let storedSessionId = localStorage.getItem("chatSessionId");
+        if (!storedSessionId) {
+            storedSessionId = Math.random().toString(36).substring(2, 15);
+            localStorage.setItem("chatSessionId", storedSessionId);
+        }
+        setSessionId(storedSessionId);
+    }, []);
+
+    const handleSend = async (text: string = inputValue) => {
         if (!text.trim()) return;
 
         const userMessage: Message = { role: "user", content: text };
@@ -43,38 +55,37 @@ export default function ChatWidgetMockup() {
         setInputValue("");
         setIsTyping(true);
 
-        // Simulate bot response
-        setTimeout(() => {
-            let response = "";
-            switch (text.toLowerCase()) {
-                case "pricing?":
-                    response = "Our pricing starts at $499/mo for the Starter plan. It includes 1 AI Chatbot and Basic Lead Intake.";
-                    break;
-                case "how does it work?":
-                    response = "We embed a smart AI agent on your site that qualifies leads 24/7 and books meetings directly to your calendar.";
-                    break;
-                case "book a demo":
-                    response = "Great! I can help you with that. Please click the 'Book a Demo' button in the hero section above.";
-                    break;
-                case "integration options":
-                    response = "We integrate with HubSpot, Salesforce, Pipedrive, GoHighLevel, and Zapier for custom workflows.";
-                    break;
-                default:
-                    const botResponses = [
-                        "That sounds interesting! Tell me more about your agency.",
-                        "We can definitely help with that. Our intaker is perfect for this use case.",
-                        "Would you like to schedule a demo to see it in action?",
-                        "I can book a meeting for you right now.",
-                    ];
-                    response = botResponses[Math.floor(Math.random() * botResponses.length)];
+        try {
+            const response = await fetch("/api/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ chatInput: text, sessionId }),
+            });
+
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
             }
+
+            const data = await response.json();
+            // Assuming the webhook returns { output: "response text" } or similar. 
+            // Adjusting based on common n8n patterns.
+            const botContent = data.output || data.text || data.message || JSON.stringify(data);
 
             setMessages((prev) => [
                 ...prev,
-                { role: "bot", content: response },
+                { role: "bot", content: botContent },
             ]);
+        } catch (error) {
+            console.error("Error sending message:", error);
+            setMessages((prev) => [
+                ...prev,
+                { role: "bot", content: "Sorry, I'm having trouble connecting right now. Please try again later." },
+            ]);
+        } finally {
             setIsTyping(false);
-        }, 1500);
+        }
     };
 
     return (

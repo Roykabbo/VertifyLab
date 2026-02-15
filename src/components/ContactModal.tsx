@@ -31,16 +31,34 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 1500));
-        setLoading(false);
-        setSubmitted(true);
-        // Reset form after delay
-        setTimeout(() => {
-            setSubmitted(false);
-            onClose();
-            setFormData({ name: "", email: "", phone: "", company: "", message: "" });
-        }, 2000);
+
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || "Failed to submit form");
+            }
+
+            setSubmitted(true);
+            // Reset form after delay
+            setTimeout(() => {
+                setSubmitted(false);
+                onClose();
+                setFormData({ name: "", email: "", phone: "", company: "", message: "" });
+            }, 2000);
+        } catch (error: any) {
+            console.error("Error submitting form:", error);
+            alert(`Error: ${error.message || "Something went wrong"}. Please try again.`);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (

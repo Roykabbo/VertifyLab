@@ -8,7 +8,7 @@ import Services from "@/components/Services";
 import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
-import ChatWidgetMockup from "@/components/ChatWidgetMockup";
+import ChatWidget from "@/components/ChatWidget";
 import ContactModal from "@/components/ContactModal";
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
       <Pricing onContactClick={() => setIsContactOpen(true)} />
       <FAQ />
       <Footer />
-      <ChatWidgetMockup />
+      <ChatWidget />
       <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
     </main>
   );
