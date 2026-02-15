@@ -35,7 +35,7 @@ export default function Navbar({ onContactClick }: NavbarProps) {
             className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-background/50 backdrop-blur-md border-b border-white/5"
         >
             <Link href="/" className="flex items-center text-2xl font-bold font-display tracking-tight hover:text-primary transition-colors z-50">
-                <img src="/logo.png" alt="VertifyLab Logo" className="h-8 w-8 object-contain" />
+                <img src="/logo.png" alt="VertifyLab Logo" className="h-16 w-auto object-contain" />
             </Link>
 
             {/* Desktop Nav */}
