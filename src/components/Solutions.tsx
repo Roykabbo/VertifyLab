@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Building2, ShoppingBag, Stethoscope, Briefcase } from "lucide-react";
+import { Building2, ShoppingBag, Wrench, Sparkles } from "lucide-react";
 
 const solutions = [
     {
@@ -17,16 +17,16 @@ const solutions = [
         solution: "Instant answers for shipping, returns, and product info.",
     },
     {
-        icon: Stethoscope,
-        niche: "Healthcare",
-        problem: "Inefficient appointment booking process.",
-        solution: "HIPAA-compliant intake and calendar sync.",
+        icon: Wrench,
+        niche: "Home Services",
+        problem: "Losing high-ticket emergency jobs because you couldn't answer the phone on-site.",
+        solution: "The AI verifies their service area, collects issue details, and books estimate appointments automatically.",
     },
     {
-        icon: Briefcase,
-        niche: "Legal & Consulting",
-        problem: "Time wasted on unqualified prospects.",
-        solution: "Smart qualification scripts before you hop on a call.",
+        icon: Sparkles,
+        niche: "Salons & Wellness",
+        problem: "Interrupting client services just to answer DMs or book appointments.",
+        solution: "AI handles your inbox, answers pricing questions, shares service menus, and secures 24/7 direct bookings.",
     },
 ];
 
